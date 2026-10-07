@@ -1,0 +1,131 @@
+.skip-to-main-content-link {
+    /* Positions the link absolutely on the page, allowing it to be placed anywhere. */
+    position: absolute;
+
+    /* Moves the link far off-screen to the left, making it invisible to sighted users. */
+    left: -9999px;
+
+    /* Sets a high z-index, ensuring that the link will be on top of other page */
+    /* elements if it becomes visible.                                          */
+    z-index: 999;
+
+    padding: 1em;
+    background-color: black;
+    color: white;
+}
+
+.skip-to-main-content-link:focus {
+    /* When the link receives focus (e.g., when a keyboard user tabs to it), */
+    /* it is repositioned horizontally to the centre of the screen.          */
+    left: 50%;
+
+    /* This centres the link horizontally by moving it back to the left by 50% */
+    /* of its own width.                                                       */
+    transform: translateX(-50%);
+}
+
+
+.visually-hidden {
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
+}
+
+
+#header {
+    background-color: #212529;
+}
+
+.navbar {
+    background-color: #212529;
+}
+
+#header-navbar {
+    background-color: #212529;
+}
+
+#header-navbar-div {
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #FFF !important;
+}
+
+.site-title {
+    color: #FFFFFF;
+}
+
+.toolbar-icons {
+    color: white !important;
+}
+
+.app-div-table {
+    border-color: #697077;
+}
+
+.row.app-div-table-row-header{
+    color: #fff;
+    background: #414549;
+}
+
+.row.app-div-table-row-striped{
+    color: #fff;
+    background: #212529;
+}
+
+.row.app-div-table-row-striped:nth-child(odd){
+  background: #414549;
+}
+
+.btn-outline-dark {
+}
+
+.btn-outline-dark {
+    color: #FFFFFF;
+    --bs-btn-color: #FFFFFF;
+    --bs-btn-border-color: #FFFFFF;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #fff;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 33,37,41;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #212529;
+    --bs-btn-active-border-color: #212529;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #212529;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #212529;
+    --bs-gradient: none;
+}
+
+.nav-link {
+    color: #FFF;
+}
+
+input.form-control {
+    color: #FFF !important;
+    border-color: rgb(73,80,87) !important;
+}
+
+textarea.form-control {
+    border-color: rgb(73,80,87) !important;
+}
+
+select.form-select {
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+.form-control:disabled {
+    background-color: #343a40 !important;
+    border-color: #495057 !important;
+}
+
+select:disabled {
+    border-color: #495057 !important;
+}
+
+input:read-only {
+    background-color: #343a40 !important;
+    border-color: #495057 !important;
+}
+
+

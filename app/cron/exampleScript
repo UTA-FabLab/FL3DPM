@@ -1,0 +1,29 @@
+<?php
+/**
+ * app/cron/exampleScript
+ *
+ * An example script that could be run using cronRun
+ * example: ./cronRun exampleScript
+ *
+ * @copyright Copyright (c) 2026, The University of Texas at Arlington
+ * @license CETD-Attribution-NonCommercial-ShareAlike
+ *
+ * @version 2026.08.01.01
+ */
+
+declare(strict_types = 1);
+
+function cronProcess()
+{
+    print '  List of colleges' . PHP_EOL;
+    \App\Request::cronInit();
+
+    $colleges = new \App\Table\CollegesList();
+
+    $colleges->query();
+
+    while ($colleges->next()) {
+        print '    ' . $colleges->college . PHP_EOL;
+    }
+}
+

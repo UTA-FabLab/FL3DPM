@@ -1,0 +1,124 @@
+#!/usr/bin/php
+<?php
+/**
+ * app/cron/cronRun
+ *
+ * Script to handle running "cron" jobs so that a cron script
+ * is not run multiple times at the same time
+ *
+ * example: ./cronRun exampleScript
+ *
+ * @copyright Copyright (c) 2026, The University of Texas at Arlington
+ * @license CETD-Attribution-NonCommercial-ShareAlike
+ *
+ * @version 2026.08.01.01
+ */
+
+declare(strict_types = 1);
+
+//-- setup the environment
+
+    define('APP_CRON', true);
+
+    //-- Define the cronRun directory
+
+        define('CRON_DIR', dirname(__FILE__));
+
+
+    //-- Define APP_ROOT
+
+        if (basename(dirname(CRON_DIR)) != 'app') {
+            die('did not find app directory');
+        }
+
+        define('APP_ROOT', dirname(dirname(CRON_DIR)) . '/');
+
+
+    //-- Load in the instance configuration
+
+        if (! file_exists(APP_ROOT . '/app/instance/config.php')) {
+            die('unable to locate instance config');
+        }
+
+        if (! @include(APP_ROOT . '/app/instance/config.php')) {
+            die('unable to include instance config');
+        }
+
+
+    //-- Load the required libraries
+
+        if (! file_exists(APP_ROOT . '/app/config/lib.php')) {
+            die('unable to locate app lib.php');
+        }
+
+        if (! @include(APP_ROOT . '/app/config/lib.php')) {
+            die('unable to include app lib.php');
+        }
+
+
+//-- see if script name was passed, and if it exists
+
+    if ($argc < 2) {
+        die('No script name provided' . PHP_EOL);
+    }
+
+    $scriptName = trim($argv[1]);
+
+    if ($scriptName == '') {
+        die('No script name provided' . PHP_EOL);
+    }
+
+    if (preg_match('/^[a-zA-z][a-zA-Z0-9]*$/', $scriptName) != 1) {
+        die('Invalid script name provided' . PHP_EOL);
+    }    
+
+    $scriptFQPN = CRON_DIR . '/' . $scriptName;
+
+    if (! file_exists($scriptFQPN)) {
+        die('Script name not found' . PHP_EOL);
+    }
+
+    if (mime_content_type($scriptFQPN) != 'text/x-php') {
+        die('Script not PHP' . PHP_EOL);
+    }
+
+
+//-- attempt to acquire the semaphone
+
+    $key = ftok(__FILE__, 'x'); 
+
+    $semaphore = sem_get($key, 1, 0666, 1); 
+
+    if (! $semaphore) {
+        die('Could not get cronRun semaphore' . PHP_EOL);
+    }
+
+
+    if (! sem_acquire($semaphore, true)) {
+        die('Could not acquire cronRun semaphore' . PHP_EOL);
+    }
+    
+
+//-- run the script
+
+    print 'cronRun start: ' . $scriptName . PHP_EOL;
+    print date('Y-m-d H:i:s', \time()) . PHP_EOL;
+
+    if (! @include($scriptFQPN)) {
+        print '*** failed to load ' . $scriptName . PHP_EOL;
+    }
+
+    if (! function_exists('cronProcess')) {
+        print '*** cronProcess does not exist in ' . $scriptName . PHP_EOL;
+    }
+
+    cronProcess();
+
+    print 'cronRun end: ' . $scriptName . PHP_EOL;
+
+
+//-- clean up the environment
+    
+    sem_release($semaphore);
+
+

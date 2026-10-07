@@ -1,0 +1,206 @@
+.skip-to-main-content-link {
+    /* Positions the link absolutely on the page, allowing it to be placed anywhere. */
+    position: absolute;
+
+    /* Moves the link far off-screen to the left, making it invisible to sighted users. */
+    left: -9999px;
+
+    /* Sets a high z-index, ensuring that the link will be on top of other page */
+    /* elements if it becomes visible.                                          */
+    z-index: 999;
+
+    padding: 1em;
+    background-color: black;
+    color: white;
+}
+
+.skip-to-main-content-link:focus {
+    /* When the link receives focus (e.g., when a keyboard user tabs to it), */
+    /* it is repositioned horizontally to the centre of the screen.          */
+    left: 50%;
+
+    /* This centres the link horizontally by moving it back to the left by 50% */
+    /* of its own width.                                                       */
+    transform: translateX(-50%);
+}
+
+
+.visually-hidden {
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
+}
+
+
+ul.wcag-toolbar {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+}
+
+ul.wcag-toolbar li a {
+  display: block;
+  padding: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+.form-control:disabled {
+    background-color: #f8f8f8 !important;
+}
+
+.form-select:disabled {
+    background-color: #f8f8f8 !important;
+}
+
+input.form-control {
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    color: #000000;
+}
+
+
+textarea.form-control {
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    color: #000000;
+}
+
+select.form-select {
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    color: #000000;
+}
+
+select.form-control option {
+    color: #000000;
+}
+
+
+/* WCAG 2.1 AA compliance color */
+a {
+    color: #0b51b8;
+}
+
+
+/* WCAG 2.1 AA compliance size */
+.btn {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon {
+    display: flex;
+}
+
+
+/* WCAG 2.1 AA compliance colors */
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #0052A3;
+    --bs-btn-border-color: #0052A3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0b5ed7;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0052A3;
+    --bs-btn-disabled-border-color: #0052A3;
+}
+
+
+/* Application selected button */
+.btn-selected {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #006BD6;
+    --bs-btn-border-color: #006BD6;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0b5ed7;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #006BD6;
+    --bs-btn-disabled-border-color: #006BD6;
+}
+    
+
+/* WCAG 2.1 AA compliance colors */
+.btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #555555;
+    --bs-btn-border-color: #555555;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #5c636a;
+    --bs-btn-hover-border-color: #565e64;
+    --bs-btn-focus-shadow-rgb: 130,138,145;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #565e64;
+    --bs-btn-active-border-color: #51585e;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #555555;
+    --bs-btn-disabled-border-color: #555555;
+}
+
+
+/* WCAG 2.1 AA compliance colors */
+.btn-warning {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #ffc107;
+    --bs-btn-border-color: #ffc107;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #ffca2c;
+    --bs-btn-hover-border-color: #ffc720;
+    --bs-btn-focus-shadow-rgb: 217,164,6;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #ffcd39;
+    --bs-btn-active-border-color: #ffc720;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #ffc107;
+    --bs-btn-disabled-border-color: #ffc107;
+}
+
+
+/* WCAG 2.1 AA compliance colors */
+.btn-danger {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #ab222f;
+    --bs-btn-border-color: #ab222f;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #bb2d3b;
+    --bs-btn-hover-border-color: #b02a37;
+    --bs-btn-focus-shadow-rgb: 225,83,97;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b02a37;
+    --bs-btn-active-border-color: #a52834;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #ab222f;
+    --bs-btn-disabled-border-color: #ab222f;
+}
+
+
+.striped-grid .row:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05); /* A light gray stripe */
+}
+
+.striped-grid .row:nth-of-type(even) {
+  background-color: #FFFFFF; /* White or your page's background color */
+}
+
+

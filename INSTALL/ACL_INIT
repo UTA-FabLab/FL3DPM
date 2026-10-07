@@ -1,0 +1,17 @@
+
+INSERT INTO identity VALUES (
+    1,
+    'admin@uos.edu',
+    0,
+    'FL3DPM',
+    'Admin',
+    'Y',
+    '$2y$10$8Gu0oxHclzEoBySALBqdrO/MX5RsxmU.8U.M/zVOAmV/zIfqZtUXu',
+    ''
+);
+
+INSERT INTO acl VALUES(1,1,'fl3dpm-access');
+INSERT INTO acl VALUES(2,1,'fl3dpm-full-access');
+INSERT INTO acl VALUES(3,1,'fl3dpm-manage-acl');
+INSERT INTO acl VALUES(4,1,'fl3dpm-manage-settings');
+

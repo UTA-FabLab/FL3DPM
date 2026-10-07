@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteBase /fl3dpm
+
+RedirectMatch 404 /\.git.*
+RedirectMatch 404 /\.gitignore
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L,QSA]
+

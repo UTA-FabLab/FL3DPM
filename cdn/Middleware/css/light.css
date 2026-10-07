@@ -1,0 +1,40 @@
+#header {
+    background-color: #00447C;
+}
+
+#header-navbar {
+    --bs-bg-opacity: 1;
+    background-color: rgba(233,236,239,var(--bs-bg-opacity))!important;
+}
+
+#header-navbar-div {
+}
+
+.site-title {
+    color: #FFFFFF;
+}
+
+.toolbar-icons {
+    color: white !important;
+}
+
+.app-div-table {
+    border: none;
+    border-width: 0px;
+}
+
+.row.app-div-table-row-header{
+    color: #000;
+    background: #ddd;
+}
+
+.row.app-div-table-row-striped{
+    color: #000;
+    background: #fff;
+}
+
+.row.app-div-table-row-striped:nth-child(odd){
+    color: #000;
+    background: #ddd;
+}
+

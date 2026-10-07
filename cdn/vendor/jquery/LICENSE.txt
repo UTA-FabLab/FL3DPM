@@ -1,0 +1,4 @@
+The jQuery library can be found at https://jquery.com/license/
+
+The license for the jQuery library can be found at https://jquery.com/license/
+

@@ -1,0 +1,287 @@
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+header {
+	margin: auto;
+}
+
+#header {
+    background-color: #00447C;
+    margin-bottom: 10px !important;
+}
+
+img.navbar-brand {
+    height: auto;
+    width: 129px;
+    margin-top: 0.5rem;
+}
+
+#library-header {
+    width: 129px;
+}
+
+.site-title {
+    color: #FFFFFF;
+}
+
+.avoid-clicks {
+    pointer-events: none;
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+a:link.no-underline {
+  text-decoration: none;
+}
+
+a:visited.no-underline {
+  text-decoration: none;
+}
+
+a:hover.no-underline {
+  text-decoration: none;
+}
+
+a:active.no-underline {
+  text-decoration: none;
+}
+
+a:link.no-underline {
+  color: inherit;
+}
+
+.toolbar-icons {
+    color: white !important;
+}
+
+.lst-app-form {
+    box-shadow: 5px 5px 5px grey;
+    background-color: rgb(247, 247, 247);
+}
+
+.info-block {
+    margin-bottom: 40px;
+}
+
+.info-block-content {
+    padding-left: 40px;
+}
+
+.form-shadow-box {
+  padding: 1em;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+}
+
+.form-section-group {
+    margin-top: 10px;
+    margin-left: 25px
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+input:read-only {
+    background-color: rgb(220, 220, 220);
+}
+
+.app-page-content {
+    margin-top: 20px;
+    padding-right:40px;
+    padding-left:40px;
+}
+
+
+.skip-to-main-content-link {
+    /* Positions the link absolutely on the page, allowing it to be placed anywhere. */
+    position: absolute;
+
+    /* Moves the link far off-screen to the left, making it invisible to sighted users. */
+    left: -9999px;
+
+    /* Sets a high z-index, ensuring that the link will be on top of other page */
+    /* elements if it becomes visible.                                          */
+    z-index: 999;
+
+    padding: 1em;
+    background-color: black;
+    color: white;
+}
+
+.skip-to-main-content-link:focus {
+    /* When the link receives focus (e.g., when a keyboard user tabs to it), */
+    /* it is repositioned horizontally to the centre of the screen.          */
+    left: 50%;
+
+    /* This centres the link horizontally by moving it back to the left by 50% */
+    /* of its own width.                                                       */
+    transform: translateX(-50%);
+}
+
+div.login-page {
+    margin: 30px;
+}
+
+.login-page-notice {
+    font-size: 25px;
+}
+
+div.login-banner {
+    padding: 10px;
+}
+
+span.login-banner {
+    font-size: 20px;
+}
+
+.login-button-container {
+    margin-top: 50px;
+}
+
+
+.visually-hidden {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+input.autolen {
+    width: auto;
+}
+
+
+div.form-error-message {
+    margin-top: 20px;
+}
+
+span.form-error-message {
+    color: #880000;
+}
+
+div.app-vr {
+    border-left: 1px solid #000;
+    height: 50%;
+    margin: 0 10px;
+}
+
+.goback {
+    padding: 0px;
+}
+
+select {
+    width: auto !important;
+    field-sizing: content;
+}
+
+.app-div-table {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.row.app-div-table-row-striped {
+    padding: 1rem;
+}
+
+div.app-form-spacing {
+    margin: 30px;
+}
+
+div.app-form-switch {
+    padding-left: 0px !important;
+}
+
+input.app-form-switch {
+    margin-left: 0px !important;
+}
+
+.app-form-radio-label {
+    margin-left: 5px !important;
+    margin-right: 20px !important;
+}
+
+.app-form-input-color {
+    width: 100px;
+}
+
+.app-form-check-input {
+    border: solid;
+    border-width: 1px;
+}
+
+.app-table {
+    width: 100%;
+}
+
+.app-view-container {
+    margin: 30px;
+}
+
+.app-view-title {
+    padding-bottom: 20px;
+}
+
+.app-view-title-text {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.app-modal-dialog {
+    max-width: 50%;
+    margin-top: 50px;
+}
+
+.app-view-tab {
+    border: solid;
+    border-sie: 1px;
+    border-color: #ddd;
+    margin-bottom: 30px;
+}
+
+.app-view-note-card {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.app-view-tab-icon {
+    margin: 10px;
+}
+
+.app-view-tab-bottom-button-bar {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.app-view-tab-container {
+    margin-top: 20px;
+}
+
+.app-view-tab-file-enabled {
+    color: #000000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.app-datatable-toolbar-start {
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.app-datatable-toolbar-end {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.app-datatable-toolbar-field {
+    padding-top: 10px;
+}
+
+

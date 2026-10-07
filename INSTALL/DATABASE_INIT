@@ -1,0 +1,259 @@
+
+DROP TABLE IF EXISTS `acl`;
+CREATE TABLE `acl` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `tag` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `change_log`;
+CREATE TABLE `change_log` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `for_table` varchar(10) NOT NULL,
+  `table_key` varchar(30) NOT NULL,
+  `related_table` varchar(10) NOT NULL DEFAULT '',
+  `related_key` varchar(30) NOT NULL,
+  `changed_by` bigint(20) unsigned NOT NULL,
+  `log_type` char(1) NOT NULL,
+  `log_data` varchar(4096) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `table_key` (`table_key`),
+  KEY `related_key` (`related_key`),
+  KEY `changed_by` (`changed_by`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+DROP TABLE IF EXISTS `colleges`;
+CREATE TABLE `colleges` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `college` varchar(255) NOT NULL DEFAULT '',
+  `enabled` varchar(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `college` (`college`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `filaments`;
+CREATE TABLE `filaments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL DEFAULT '',
+  `enabled` varchar(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `identity`;
+CREATE TABLE `identity` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `last_updated_on` bigint(20) NOT NULL,
+  `first_name` varchar(50) NOT NULL DEFAULT '',
+  `last_name` varchar(50) NOT NULL DEFAULT '',
+  `enabled` char(1) NOT NULL DEFAULT 'N',
+  `password_hash` varchar(255) NOT NULL DEFAULT '',
+  `password_reset_token` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=9198 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `printers`;
+CREATE TABLE `printers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `enabled` varchar(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `project_filaments`;
+CREATE TABLE `project_filaments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) unsigned NOT NULL,
+  `filament_id` bigint(20) unsigned NOT NULL,
+  `filament_order` int(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `filament_order` (`project_id`,`filament_order`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+DROP TABLE IF EXISTS `project_files`;
+CREATE TABLE `project_files` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) unsigned NOT NULL,
+  `status` char(2) NOT NULL DEFAULT 'A',
+  `file_name` varchar(500) NOT NULL,
+  `file_type` char(3) NOT NULL,
+  `file_size` bigint(20) unsigned NOT NULL,
+  `file_blob` longblob NOT NULL,
+  `uploaded` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `project_id` (`project_id`,`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `project_notes`;
+CREATE TABLE `project_notes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) unsigned NOT NULL,
+  `print_id` bigint(20) unsigned NOT NULL,
+  `note` varchar(10000) NOT NULL DEFAULT 'N',
+  `posted` bigint(20) unsigned NOT NULL,
+  `posted_by` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `project_id` (`project_id`,`print_id`),
+  KEY `print_id` (`print_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `project_print_problems`;
+CREATE TABLE `project_print_problems` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `print_id` bigint(20) unsigned NOT NULL,
+  `problem` char(3) NOT NULL DEFAULT 'N',
+  `action_needed` char(3) NOT NULL DEFAULT 'N',
+  `action_needed_date` bigint(20) NOT NULL DEFAULT -2208967200,
+  `action_taken` char(3) NOT NULL DEFAULT 'N',
+  `action_taken_date` bigint(20) NOT NULL DEFAULT -2208967200,
+  PRIMARY KEY (`id`),
+  KEY `print_id` (`print_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `project_prints`;
+CREATE TABLE `project_prints` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) unsigned NOT NULL,
+  `printer_id` bigint(20) unsigned NOT NULL,
+  `file_id` bigint(20) unsigned NOT NULL,
+  `status` varchar(3) NOT NULL DEFAULT 'U',
+  `cancel_reason` varchar(3) NOT NULL DEFAULT 'N',
+  `created` bigint(20) unsigned NOT NULL,
+  `wait_list_number` varchar(20) NOT NULL DEFAULT '',
+  `job_ticket_number` varchar(20) NOT NULL DEFAULT '',
+  `is_reprint` varchar(3) NOT NULL DEFAULT 'N',
+  `cost` decimal(5,2) NOT NULL DEFAULT 0.00,
+  PRIMARY KEY (`id`),
+  KEY `project_id` (`project_id`,`id`),
+  KEY `job_ticket_number` (`job_ticket_number`),
+  KEY `wait_list_number` (`wait_list_number`),
+  KEY `printer_id` (`printer_id`,`project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+
+DROP TABLE IF EXISTS `projects`;
+CREATE TABLE `projects` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `year` char(4) NOT NULL,
+  `type` char(1) NOT NULL DEFAULT 'P',
+  `status` char(3) NOT NULL DEFAULT '',
+  `cancel_reason` varchar(3) NOT NULL DEFAULT 'U',
+  `customer_id` varchar(20) NOT NULL,
+  `is_student` char(1) NOT NULL DEFAULT 'Y',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `first_name` varchar(50) NOT NULL DEFAULT '',
+  `last_name` varchar(50) NOT NULL DEFAULT '',
+  `created` bigint(20) NOT NULL,
+  `cancel_date` bigint(20) NOT NULL DEFAULT -2208967200,
+  `price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `college_id` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `category` char(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `year` (`year`),
+  KEY `customer_id` (`customer_id`),
+  KEY `lastname` (`last_name`),
+  KEY `firstname` (`first_name`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE `settings` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tag` varchar(50) NOT NULL DEFAULT '',
+  `type` varchar(1) NOT NULL DEFAULT '',
+  `tag_desc` varchar(255) NOT NULL DEFAULT '',
+  `value` varchar(255) NOT NULL DEFAULT '',
+  `editable` char(1) NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag` (`tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `settings` VALUES (
+    1,
+    'APPLICATION_EMAIL_ADMIN',
+    'M',
+    'FL3DPM E-Mail Admin',
+    'admin@uos.edu',
+    'Y');
+
+INSERT INTO `settings` VALUES (2,
+    'APPLICATION_EMAIL_FROM',
+    'M',
+    'FL3DPM E-mail From Address',
+    'lab@uos.edu',
+    'Y');
+
+INSERT INTO `settings` VALUES (
+    3,
+    'FABAPP_JOB_TICKET_URL',
+    'S',
+    'FabApp Job Ticket URL',
+    'https://lab.uos.edu/pages/lookup.php?trans_id=',
+    'Y');
+
+INSERT INTO `settings` VALUES (
+    4,
+    'PROBLEM_LOCK_COUNT',
+    'N',
+    'Problem Lock Count',
+    '4',
+    'Y');
+
+INSERT INTO `settings` VALUES (
+    5,
+    'FABAPP_SERVICE_TICKET_URL',
+    'S',
+    'FabApp Service Ticket URL',
+    'https://lab.uos.edu/pages/sr_issue.php',
+    'Y');
+
+INSERT INTO `settings` VALUES (
+    6,
+    'APPLICATION_EMAIL_BCC',
+    'S',
+    'Application Email BCC',
+    'labBCC@uos.edu',
+    'Y');
+
+
+
+DROP TABLE IF EXISTS `user_preferences`;
+CREATE TABLE `user_preferences` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `css_style` varchar(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci PACK_KEYS=0;
+
+
